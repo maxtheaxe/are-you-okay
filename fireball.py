@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 import datetime
 from firebase import firebase
-import Adafruit_DHT
+
 
 import urllib2, urllib, httplib
 import json
