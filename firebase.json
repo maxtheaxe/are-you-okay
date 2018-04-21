@@ -1,10 +1,12 @@
 {
   "hosting": {
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+  "Pi_Data" : {
+    "Button Pressed" : "False",
+    "Date" : "04-21-2018",
+    "Location_x" : 1236.23532,
+    "Location_y" : 1729172.23,
+    "Time" : "4:03:42"
+  }
   }
 }
