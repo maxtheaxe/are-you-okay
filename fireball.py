@@ -3,8 +3,8 @@ firebase = firebase.FirebaseApplication('https://friendlychat-d891b.firebaseio.c
 new_user = '123456'
 
 
-x = '11'
-y = '11'
+x = 11
+y = 11
 z = '8/20/20'
 xx = '8:21'
 
