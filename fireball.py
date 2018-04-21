@@ -6,7 +6,7 @@ new_user = '19248.23405'
 
 xloc = 'xloc'
 
-data = {'xloc': new_user'}
+data = ('xloc': new_user')
         
 set = json.dumps(data)
 
