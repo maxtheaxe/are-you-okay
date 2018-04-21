@@ -8,7 +8,7 @@ xloc = 'xloc'
 
 data = {'xloc': new_user}
         
-set = json.dumps(data)
+sent = json.dumps(data)
 
 result = firebase.post('/test, sent)
 print result
