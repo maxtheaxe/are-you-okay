@@ -2,10 +2,11 @@ from firebase import firebase
 firebase = firebase.FirebaseApplication('https://friendlychat-d891b.firebaseio.com/', None)
 new_user = '123456'
 
-x = '10'
-y = '10'
-z = '8/10/20'
-xx = '8:20'
+
+x = '11'
+y = '11'
+z = '8/20/20'
+xx = '8:21'
 
 firebase.post('/xcol', data = x, headers = {'name' : x} )
 
