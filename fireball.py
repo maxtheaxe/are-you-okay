@@ -10,8 +10,8 @@ xx = '8:21'
 
 while True:
 
-  x++
-  y++
+  x+=1
+  y+=1
 
   firebase.post('/xcol', data = x, headers = {'name' : x} )
 
