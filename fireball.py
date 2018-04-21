@@ -8,10 +8,15 @@ y = '11'
 z = '8/20/20'
 xx = '8:21'
 
-firebase.post('/xcol', data = x, headers = {'name' : x} )
+while True:
 
-firebase.post('/ycol', data = y, headers = {'name' : y} )
+  x++
+  y++
 
-firebase.post('/date', data = z, headers = {'name' : z} )
+  firebase.post('/xcol', data = x, headers = {'name' : x} )
 
-firebase.post('/time', data = xx, headers = {'name' : xx} )
+  firebase.post('/ycol', data = y, headers = {'name' : y} )
+
+  firebase.post('/date', data = z, headers = {'name' : z} )
+
+  firebase.post('/time', data = xx, headers = {'name' : xx} )
