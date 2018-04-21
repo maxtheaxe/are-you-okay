@@ -1,5 +1,5 @@
 from firebase import firebase
-firebase = firebase.FirebaseApplication('https://cbb-hackathon.firebaseio.com/', None)
+firebase = firebase.FirebaseApplication('https://friendlychat-8cd27.firebaseapp.com/', None)
 new_user = '19248.23405'
 
 
