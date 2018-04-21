@@ -1,4 +1,5 @@
-"Data", "04-21-2017"
-"Time", "22:14:39"
-"Button Pressed", "True"
-"GeoLocation (1236.235325, 1729172.231)
+Date, 04-21-2017
+Time, 22:14:39
+Button Pressed, True
+Location_x, 1236.235325 
+Location_y, 1729172.231
