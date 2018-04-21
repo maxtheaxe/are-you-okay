@@ -9,9 +9,7 @@ import json
 import os 
 from functools import partial
 
-GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
-GPIO.setwarnings(False)
+
 
 
 
