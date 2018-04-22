@@ -19,3 +19,5 @@ Concerned users can log into their account to see if their loved one is okay, an
 * Powerboost 1000 Charger from Adafruit
 * Momentary switch
 * Plastic crayon box enclosure
+
+![hardware picture](https://raw.githubusercontent.com/maxtheaxe/are-you-okay/master/smallerhardwarepic.jpg)
