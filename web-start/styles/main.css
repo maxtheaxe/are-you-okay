@@ -202,6 +202,8 @@ main, #messages-card {
   color: #0288D1;
   font-size: 60px;
   padding: 20px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: unset;
   text-shadow: 2px 2px #140080;
 }
+
+td:hover{background-color:#ddd;;cursor: pointer}

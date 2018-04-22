@@ -1,0 +1,40 @@
+[debug] [2018-04-22T05:22:09.371Z] ----------------------------------------------------------------------
+[debug] [2018-04-22T05:22:09.376Z] Command:       /usr/local/bin/node /Users/Mike/.npm-global/bin/firebase serve
+[debug] [2018-04-22T05:22:09.376Z] CLI Version:   3.18.4
+[debug] [2018-04-22T05:22:09.376Z] Platform:      darwin
+[debug] [2018-04-22T05:22:09.376Z] Node Version:  v8.11.1
+[debug] [2018-04-22T05:22:09.377Z] Time:          Sun Apr 22 2018 01:22:09 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:09.377Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-22T05:22:09.427Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-22T05:22:09.428Z] > authorizing via signed-in user
+[debug] [2018-04-22T05:22:09.430Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/friendlychat-d891b  
+  
+ Sun Apr 22 2018 01:22:09 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:09.956Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-22T05:22:09.957Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/friendlychat-d891b/tokens  
+  
+ Sun Apr 22 2018 01:22:09 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:10.331Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-22T05:22:10.333Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/friendlychat-d891b  
+  
+ Sun Apr 22 2018 01:22:10 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:10.626Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Mike/Documents/GitHub/Firebase tutorial/friendlychat-web/web-start'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-04-22T05:22:16.493Z] Fetching environment
+[debug] [2018-04-22T05:22:16.503Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/100139018696:getServerAppConfig  
+  
+ Sun Apr 22 2018 01:22:16 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:16.503Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/100139018696/clients/_:getWebAppConfig  
+  
+ Sun Apr 22 2018 01:22:16 GMT-0400 (EDT)
+[debug] [2018-04-22T05:22:16.878Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-22T05:22:16.953Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-22T05:22:16.953Z] Starting @google-cloud/functions-emulator
+[info] i  hosting: Serving hosting files from: ./
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-04-22T05:22:23.595Z] Parsing function triggers

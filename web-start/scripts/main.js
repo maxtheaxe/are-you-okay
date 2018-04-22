@@ -17,6 +17,9 @@
 
 var x_val;
 var y_val;
+var show_map = false;
+var buttonArray, dateArray, timeArray, xArray, yArray
+
 
 // Initializes FriendlyChat.
 function FriendlyChat() {
@@ -74,6 +77,31 @@ FriendlyChat.prototype.loadMessages = function() {
   // Make sure we remove all previous listeners.
   this.messagesRef.off();
 
+  firebase.database().ref('/button_status').on('value', function(snapshot) {
+      buttonArray = snapshotToArray(snapshot);
+      console.log('buton', buttonArray);
+  });
+
+  firebase.database().ref('/date').on('value', function(snapshot) {
+      dateArray = snapshotToArray(snapshot);
+      console.log('date', dateArray);
+  });
+
+  firebase.database().ref('/time').on('value', function(snapshot) {
+      timeArray = snapshotToArray(snapshot);
+      console.log('time', timeArray);
+  });
+
+  firebase.database().ref('/xcol').on('value', function(snapshot) {
+      xArray = snapshotToArray(snapshot);
+      console.log('x', xArray);
+  });
+
+  firebase.database().ref('/ycol').on('value', function(snapshot) {
+      yArray = snapshotToArray(snapshot);
+      console.log('y', yArray);
+  });
+
   // Loads the last date value
   var setMessage = function(data) {
     var val = data.val();
@@ -112,6 +140,9 @@ FriendlyChat.prototype.loadMessages = function() {
   // Loads the last 12 messages and listen for new ones.
   var setMessage = function(data) {
     var val = data.val();
+    if(show_map && (val != x_val)){
+      mymap(val, y_val);
+    }
     x_val = val;
     this.displayMessage(data.key, 'xcol', val, val.photoUrl, val.imageUrl);
   }.bind(this);
@@ -129,6 +160,16 @@ FriendlyChat.prototype.loadMessages = function() {
   }.bind(this);
   this.messagesRef.limitToLast(1).on('child_added', setMessage);
   this.messagesRef.limitToLast(1).on('child_changed', setMessage);
+
+  if(timeArray == null){
+    timeArray = [new Date()]
+  }
+  else{
+    timeArray.push(new Date())
+  }
+
+  log_data();
+
 };
 
 // Saves a new message on the Firebase DB.
@@ -369,6 +410,60 @@ window.onload = function() {
   window.friendlyChat = new FriendlyChat();
 };
 
+
+function snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+
+        returnArr.push(item);
+    });
+
+    return returnArr;
+};
+
+function read_arrays(label){
+  array = firebase.database().ref('/' + label).on('value', function(snapshot) {
+          var arr = snapshotToArray(snapshot);
+          console.log(label, arr);
+          // alert(arr);
+          return arr;
+        });
+  return array;
+}
+
+// writes arrays to log
+function log_data(){
+
+    alert(read_arrays('xcol'));
+
+    // alert(xArray.length);
+    //
+    // var lengths = [xArray.length, yArray.length];
+    // var min_length = Math.min.apply(null, lengths);
+    // var table = document.getElementById('table');
+    // var masterArray = [xArray.slice(min_length), yArray.slice(min_length)];
+    //
+    // console.log('masterArray' + masterArray);
+    // for(var i = 0; i < table.rows.length; i++)
+    // {
+    //     // row cells
+    //     for(var j = 1; j < table.rows[i].cells.length; j++)
+    //     {
+    //       table.rows[i].cells[j].innerHTML = masterArray[0][0];
+    //     }
+    //
+    // }
+
+    alert(xArray[0]);
+
+    var table = document.getElementById('table');
+    table.rows[0].cells[1].innerHTML = xArray[0];
+
+}
+
+
 // Set the date we're counting down to
 var distance = 3000;
 // Update the count down every 1 second
@@ -395,22 +490,80 @@ var x = setInterval(function() {
 
     // If the count down is over, write some text
     if (distance < 0) {
+        document.getElementById("Title").style.display = "none";
         clearInterval(x);
-        document.getElementById("distance").innerHTML = 'Revealing Location';
-        document.getElementById("message").setAttribute('hidden', 'true');
-        mymap()
+        document.getElementById("distance").innerHTML = 'Current Location';
+        show_map = true;
+        mymap(x_val, y_val);
     }
 }, 1000);
 
 
+function reset(){
+  show_map = false;
+  distance = 3000;
+}
+
+document.getElementById('table')
 // Creates a map
-function mymap() {
-  // document.getElementById("test_x").innerHTML = x_val;
-  // document.getElementById("test_y").innerHTML = y_val;
-  var myCenter = new google.maps.LatLng(x_val, y_val);
+function mymap(x, y) {
+  var myCenter = new google.maps.LatLng(x, y);
   var mapCanvas = document.getElementById("map");
   var mapOptions = {center: myCenter, zoom: 16};
   var map = new google.maps.Map(mapCanvas, mapOptions);
   var marker = new google.maps.Marker({position:myCenter});
   marker.setMap(map);
+}
+
+
+function generate_interactive_table(){
+  document.getElementById("test").innerHTML = '23';
+  var table = document.getElementById("table"),rIndex,cIndex;
+
+      // table rows
+      for(var i = 1; i < table.rows.length; i++)
+      {
+          // row cells
+          for(var j = 0; j < table.rows[i].cells.length; j++)
+          {
+              table.rows[i].cells[j].onclick = function()
+              {
+                  rIndex = this.parentElement.rowIndex;
+                  cIndex = this.cellIndex+1;
+                  document.getElementById("test").innerHTML = "Row : "+rIndex+" , Cell : "+cIndex;
+              };
+          }
+      }
+}
+
+function default_mymap(){
+  mymap(x_val, y_val);
+}
+
+// generate onlick functions for tables
+var table = document.getElementById("table"),rIndex,cIndex;
+// table rows
+for(var i = 1; i < table.rows.length; i++)
+{
+    // row cells
+    for(var j = 0; j < table.rows[i].cells.length; j++)
+    {
+        table.rows[i].cells[j].onclick = function()
+        {
+            rIndex = this.parentElement.rowIndex;
+            cIndex = this.cellIndex;
+            // document.getElementById("test").innerHTML = "Row : "+rIndex+" , Cell : "+cIndex;
+
+            // var objCells = table.rows.item(rIndex).cells;
+            // curr_lat = objCells.item(1);
+            // curr_long = objCells.item(2);
+            // document.getElementById("test").innerHTML = table.rows[i].cells[j].childNodes[0].value;
+            // alert(table.rows[rIndex].cells[cIndex].innerHTML)
+            var curr_lat = parseFloat(table.rows[rIndex].cells[1].innerHTML);
+            var curr_long = parseFloat(table.rows[rIndex].cells[2].innerHTML);
+            // alert(table.rows[rIndex].cells[0].innerHTML);
+            document.getElementById("test").innerHTML = "Row : "+curr_lat+" , Cell : "+curr_long;
+            mymap(curr_lat, curr_long)
+        };
+    }
 }
